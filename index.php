@@ -24,6 +24,19 @@ include 'database/index.php';
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/selective.css">
   <link href="css/style.css" rel="stylesheet">
+  <script>
+    function toggleInput() {
+      var dropdown = document.getElementById("toggleDropdown");
+      var inputField = document.getElementById("textInput");
+
+      // Check the selected option value
+      if (dropdown.value === "show") {
+        inputField.style.display = "block"; // Show the input field
+      } else {
+        inputField.style.display = "none"; // Hide the input field
+      }
+    }
+  </script>
 </head>
 <style>
   div::-webkit-scrollbar {
@@ -145,13 +158,13 @@ include 'database/index.php';
               <div class="problem col-12 text-center mt-2">
                 <select class="z-depth-1 custom-select browser-default" disabled id="problem"></select>
               </div>
-              <div class="jigLocation col-12 text-center mt-2">
+              <div class="jigLocation col-12 text-center mt-2" style="display: none;">
                 <select class="z-depth-1 custom-select browser-default" disabled id="jigLocation"></select>
               </div>
-              <div class="jigName col-12 text-center mt-2">
+              <div class="jigName col-12 text-center mt-2" style="display: none;">
                 <select class="z-depth-1 custom-select browser-default" disabled id="jigName"></select>
               </div>
-              <div class="lineStatus col-12 text-center mt-2">
+              <div class="lineStatus col-12 text-center mt-2" style="display: none;">
                 <select class="z-depth-1 custom-select browser-default" disabled id="lineStatus"></select>
               </div>
               <div class="col-12 text-center">
@@ -300,7 +313,7 @@ include 'database/index.php';
     $(document).ready(function () {
       var idleInterval = setInterval(timerIncrement, 60000); //PER 1 MINUTE
       $(this).mousemove(function (e) {
-         idleTime = 0;
+        idleTime = 0;
       });
 
       $(this).keypress(function (e) {
@@ -467,6 +480,20 @@ include 'database/index.php';
       $('#scanId').focus();
       $('#scanId').val('');
     });
+    // HIDE JIGNAME INPUT, JIGLOCATION, LINE STATUS -----------------------------------------------------------------------------------------
+    $("#deptDiv").change(function () {
+      var selectedOption = $(this).val();
+      if (selectedOption === 'PE' || selectedOption ==='EQD') {
+        $(".jigLocation").show();
+        $(".jigName").show();
+        $(".lineStatus").show();
+      } else {
+        $(".jigLocation").hide();
+        $(".jigName").hide();
+        $(".lineStatus").hide();
+      }
+    });
+
     // SCAN ID ENABLE
     const enterID = () => {
       $('#scanId').attr('disabled', false);
@@ -688,14 +715,14 @@ include 'database/index.php';
           problem: problem,
           scanID: scanID
         }, success: function (response) {
-           response = response.trim();
+          response = response.trim();
           if (response == 'success') {
             swal('Success', 'Andon Requested!', 'success').then((value) => {
               location.reload();
             });
-          }else if(response == 'Already Exist'){
+          } else if (response == 'Already Exist') {
             swal('Andon Already Filed !', ' ', 'info');
-          } else{
+          } else {
             swal('Error', 'Error', 'error');
           }
         }
