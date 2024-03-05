@@ -40,23 +40,28 @@ if($method == 'requestAndon') {
     $problem = $_POST['problem'];
     $ip = $_SERVER['REMOTE_ADDR'];
     $scanID = $_POST['scanID'];
+    $jigLocation = $_POST['jigLocation'];
+    $jigName = $_POST['jigName'];
+    $lineStatus = $_POST['lineStatus'];
 
-    // Check if a record with the same department, line, and machine already exists
-    $checkQuery = "SELECT * FROM tblandonrequest WHERE `department` = '$department' AND `line` = '$line' AND `machineName` = '$machine' AND `problem` = '$problem'";
+    // Check if a record with the same department, line, and machine already exists in  STATUS = pending
+    $checkQuery = "SELECT * FROM tblandonrequest WHERE `department` = '$department' AND `line` = '$line' AND `machineName` = '$machine'";
     $result = $db->query($checkQuery);
+	  // Check if a record with the same department, line, and machine already exists in  STATUS = ongoing
+	$checkOngoing = "SELECT * FROM tblandonongoing WHERE `department` = '$department' AND `line` = '$line' AND `machineName` = '$machine'";
+    $resultOngoing = $db->query($checkOngoing);
 
-    if ($result) {
-        if ($result->num_rows > 0) {
+    if ($result || $resultOngoing) {
+        if ($result->num_rows > 0 || $resultOngoing->num_rows > 0) {
             echo 'Already Exist';
         } else {
             // Insert new record if no duplicate found
             $datenow = date('Y-m-d H:i:s');
-            $qry = "INSERT INTO `tblandonrequest` (`listId`, `category`, `line`, `machineName`, `machineNo`, `process`, `problem`, `requestedId`, `operatorName`, `department`, `status`, `confirm_by`, `requestDateTime`, `ipPathReq`) VALUES ('', '$categ', '$line', '$machine', '$machineNumber', '$process', '$problem', '$scanID', '$operator', '$department', 'pending', '', '$datenow', '$ip')";
-
+            $qry = "INSERT INTO `tblandonrequest` (`listId`, `category`, `line`, `machineName`, `machineNo`, `process`, `problem`, `jigLocation`,`jigName`,`lineStatus`,`requestedId`, `operatorName`, `department`, `status`, `confirm_by`, `requestDateTime`, `ipPathReq`) VALUES ('', '$categ', '$line', '$machine', '$machineNumber', '$process', '$problem','$jigLocation','$jigName','$lineStatus', '$scanID', '$operator', '$department', 'pending', '', '$datenow', '$ip')";
             if($db->query($qry)){
                 echo 'success';
             } else {
-                echo 'fail';
+                echo 'Query Error: ' . $db->error;
             }
         }
     } else {

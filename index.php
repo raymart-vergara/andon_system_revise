@@ -159,13 +159,16 @@ include 'database/index.php';
                 <select class="z-depth-1 custom-select browser-default" disabled id="problem"></select>
               </div>
               <div class="jigLocation col-12 text-center mt-2" style="display: none;">
-                <select class="z-depth-1 custom-select browser-default" disabled id="jigLocation"></select>
+                <input type="text" id="jigLocation" name="jigLocation" class="z-depth-1 form-control" disabled
+                  placeholder="Jig Location" autocomplete="off" disabled required>
               </div>
               <div class="jigName col-12 text-center mt-2" style="display: none;">
-                <select class="z-depth-1 custom-select browser-default" disabled id="jigName"></select>
+              <input type="text" id="jigName" name="jigName" class="z-depth-1 form-control" disabled
+                  placeholder="Jig Name" autocomplete="off" disabled required>
               </div>
               <div class="lineStatus col-12 text-center mt-2" style="display: none;">
-                <select class="z-depth-1 custom-select browser-default" disabled id="lineStatus"></select>
+                <input type="text" id="lineStatus" name="lineStatus" class="z-depth-1 form-control" disabled
+                  placeholder="Line Status" autocomplete="off" disabled required>
               </div>
               <div class="col-12 text-center">
                 <!-- <input type="submit" value="Submit" id="btnSubmit" class="btn btn-danger" > -->
@@ -483,7 +486,8 @@ include 'database/index.php';
     // HIDE JIGNAME INPUT, JIGLOCATION, LINE STATUS -----------------------------------------------------------------------------------------
     $("#deptDiv").change(function () {
       var selectedOption = $(this).val();
-      if (selectedOption === 'PE' || selectedOption ==='EQD') {
+      var selectCategory = $('#category').val();
+      if (selectCategory === 'Final' && (selectedOption === 'PE' || selectedOption === 'EQD')) {
         $(".jigLocation").show();
         $(".jigName").show();
         $(".lineStatus").show();
@@ -672,10 +676,32 @@ include 'database/index.php';
         }
       });
     }
+    $('#problem').change(function () {
+      $(this).attr('disabled', true);
+      $('#jigLocation').attr('disabled', false);
+      $('#jigLocation').focus();
+    });
+    // -------------------------------------------------------------------------------------------------------------------------------
+    $('#jigLocation').change(function () {
+      $(this).attr('disabled', true);
+      $('#jigName').attr('disabled', false);
+      $('#jigName').focus();
+    });
+    // -------------------------------------------------------------------------------------------------------------------------------
+    $('#jigName').change(function () {
+      $(this).attr('disabled', true);
+      $('#lineStatus').attr('disabled', false);
+      $('#lineStatus').focus();
+    });
+    $('#lineStatus').change(function () {
+      $(this).attr('disabled', true);
+      $('#btnSubmit').attr('disabled', false);
+    });
     // -------------------------------------------------------------------------------------------------------------------------------
     $('#problem').change(function () {
       $(this).attr('disabled', true);
       $('#btnSubmit').attr('disabled', false);
+
     });
     // ----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -693,6 +719,9 @@ include 'database/index.php';
       machineNumber = $('#machineNo').val();
       problem = $('#problem').val();
       scanID = $('#scanId').val();
+      jigLocation = $('#jigLocation').val();
+      jigName = $('#jigName').val();
+      lineStatus = $('#lineStatus').val();
       if (processTxt == null) {
         processTxt = 'N/A';
       }
@@ -713,7 +742,10 @@ include 'database/index.php';
           processTxt: processTxt,
           machineNumber: machineNumber,
           problem: problem,
-          scanID: scanID
+          scanID: scanID,
+          jigLocation: jigLocation,
+          jigName: jigName,
+          lineStatus: lineStatus
         }, success: function (response) {
           response = response.trim();
           if (response == 'success') {
@@ -721,7 +753,7 @@ include 'database/index.php';
               location.reload();
             });
           } else if (response == 'Already Exist') {
-            swal('Andon Already Filed !', ' ', 'info');
+            swal('Andon Already Filed Or Ongoing!', ' ', 'info');
           } else {
             swal('Error', 'Error', 'error');
           }

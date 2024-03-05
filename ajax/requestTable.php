@@ -3,7 +3,7 @@ include '../database/index.php';
 $dept = $_POST['dept'];
 $prod = $_POST['prod'];
 if (empty($dept) && empty($prod)) {
-    $sql = "SELECT listId, line, category, machineName, machineNo, process, problem, operatorName, department,status, DATE_FORMAT(requestDateTime, '%Y-%m-%d') as dateRequest, DATE_FORMAT(requestDateTime, '%h:%i %p') as timeRequest, confirm_by  FROM tblandonrequest";
+    $sql = "SELECT listId, line,jigName, jigLocation, lineStatus, category, machineName, machineNo, process, problem, operatorName, department,status, DATE_FORMAT(requestDateTime, '%Y-%m-%d') as dateRequest, DATE_FORMAT(requestDateTime, '%h:%i %p') as timeRequest, confirm_by  FROM tblandonrequest";
     $query = $db->query($sql);
     while ($res = $query->fetch_assoc()) {
         if ($res['status'] == 'pending') {
@@ -39,7 +39,7 @@ if (empty($dept) && empty($prod)) {
             // EQD FINAL
             elseif ($res['department'] == 'EQD' && $res['category'] == 'Final') {
                 echo "<tr style='cursor:pointer;background-color:#0b9e1f;color:white;' onclick='clickRequest(&quot;" . $res['listId'] . "&quot;)'>";
-                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] . "/" . $res['process'] . "</td>";
+                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] ."/" . $res['jigLocation'] . "/" . $res['jigName'] . "/" . $res['lineStatus'] . "/" . $res['process'] ."</td>";
                 echo "<td>" . $res['problem'] . "</td>";
                 echo "<td>" . $res['operatorName'] . "</td>";
                 echo "<td>" . $res['department'] . "</td>";
@@ -50,7 +50,7 @@ if (empty($dept) && empty($prod)) {
             // PE FINAL
             elseif ($res['department'] == 'PE' && $res['category'] == 'Final') {
                 echo "<tr style='cursor:pointer;background-color:#fa5007;color:white;' onclick='clickRequest(&quot;" . $res['listId'] . "&quot;)'>";
-                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] . "/" . $res['process'] . "</td>";
+                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] . "/" . $res['jigLocation'] . "/" . $res['jigName'] . "/" . $res['lineStatus'] . "/" . $res['process'] ."</td>";
                 echo "<td>" . $res['problem'] . "</td>";
                 echo "<td>" . $res['operatorName'] . "</td>";
                 echo "<td>" . $res['department'] . "</td>";
@@ -97,7 +97,7 @@ if (empty($dept) && empty($prod)) {
         }
     }
 } elseif (empty($prod) && !empty($dept)) {
-    $sql = "SELECT listId, line, category, machineName, machineNo, process, problem, operatorName, department,status, DATE_FORMAT(requestDateTime, '%Y-%m-%d') as dateRequest, DATE_FORMAT(requestDateTime, '%h:%i %p') as timeRequest, confirm_by  FROM tblandonrequest WHERE department = '$dept'";
+    $sql = "SELECT listId, line, category, machineName, machineNo, process, problem,jigName, jigLocation, lineStatus, operatorName, department,status, DATE_FORMAT(requestDateTime, '%Y-%m-%d') as dateRequest, DATE_FORMAT(requestDateTime, '%h:%i %p') as timeRequest, confirm_by  FROM tblandonrequest WHERE department = '$dept'";
     $query = $db->query($sql);
     while ($res = $query->fetch_assoc()) {
         if ($res['status'] == 'pending') {
@@ -132,7 +132,7 @@ if (empty($dept) && empty($prod)) {
             // EQD FINAL
             elseif ($res['department'] == 'EQD' && $res['category'] == 'Final') {
                 echo "<tr style='cursor:pointer;background-color:#0b9e1f;color:white;' onclick='clickRequest(&quot;" . $res['listId'] . "&quot;)'>";
-                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] . "/" . $res['process'] . "</td>";
+                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] ."/" . $res['jigLocation'] . "/" . $res['jigName'] . "/" . $res['lineStatus'] . "/" . $res['process'] ."</td>";
                 echo "<td>" . $res['problem'] . "</td>";
                 echo "<td>" . $res['operatorName'] . "</td>";
                 echo "<td>" . $res['department'] . "</td>";
@@ -154,7 +154,7 @@ if (empty($dept) && empty($prod)) {
             // PE FINAL
             elseif ($res['department'] == 'PE' && $res['category'] == 'Final') {
                 echo "<tr style='cursor:pointer;background-color:#fa5007;color:white;' onclick='clickRequest(&quot;" . $res['listId'] . "&quot;)'>";
-                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] . "/" . $res['process'] . "</td>";
+                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] ."/" . $res['jigLocation'] . "/" . $res['jigName'] . "/" . $res['lineStatus'] . "/" . $res['process'] ."</td>";
                 echo "<td>" . $res['problem'] . "</td>";
                 echo "<td>" . $res['operatorName'] . "</td>";
                 echo "<td>" . $res['department'] . "</td>";
@@ -197,7 +197,7 @@ if (empty($dept) && empty($prod)) {
 }
 // IF DEPT EMPTY AND PROD NOT EMPTY
 elseif (empty($dept) && !empty($prod)) {
-    $sql = "SELECT listId, line, category, machineName, machineNo, process, problem, operatorName, department,status, DATE_FORMAT(requestDateTime, '%Y-%m-%d') as dateRequest, DATE_FORMAT(requestDateTime, '%h:%i %p') as timeRequest, confirm_by  FROM tblandonrequest WHERE category = '$prod'";
+    $sql = "SELECT listId, line, category, machineName, machineNo, process, problem,jigName, jigLocation, lineStatus, operatorName, department,status, DATE_FORMAT(requestDateTime, '%Y-%m-%d') as dateRequest, DATE_FORMAT(requestDateTime, '%h:%i %p') as timeRequest, confirm_by  FROM tblandonrequest WHERE category = '$prod'";
     $query = $db->query($sql);
     while ($res = $query->fetch_assoc()) {
         if ($res['status'] == 'pending') {
@@ -232,7 +232,7 @@ elseif (empty($dept) && !empty($prod)) {
             // EQD FINAL
             elseif ($res['department'] == 'EQD' && $res['category'] == 'Final') {
                 echo "<tr style='cursor:pointer;background-color:#0b9e1f;color:white;' onclick='clickRequest(&quot;" . $res['listId'] . "&quot;)'>";
-                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] . "/" . $res['process'] . "</td>";
+                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] ."/" . $res['jigLocation'] . "/" . $res['jigName'] . "/" . $res['lineStatus'] . "/" . $res['process'] ."</td>";
                 echo "<td>" . $res['problem'] . "</td>";
                 echo "<td>" . $res['operatorName'] . "</td>";
                 echo "<td>" . $res['department'] . "</td>";
@@ -254,7 +254,7 @@ elseif (empty($dept) && !empty($prod)) {
             // PE FINAL
             elseif ($res['department'] == 'PE' && $res['category'] == 'Final') {
                 echo "<tr style='cursor:pointer;background-color:#fa5007;color:white;' onclick='clickRequest(&quot;" . $res['listId'] . "&quot;)'>";
-                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] . "/" . $res['process'] . "</td>";
+                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] ."/" . $res['jigLocation'] . "/" . $res['jigName'] . "/" . $res['lineStatus'] . "/" . $res['process'] ."</td>";
                 echo "<td>" . $res['problem'] . "</td>";
                 echo "<td>" . $res['operatorName'] . "</td>";
                 echo "<td>" . $res['department'] . "</td>";
@@ -298,7 +298,7 @@ elseif (empty($dept) && !empty($prod)) {
 
 // BOTH FIELDS WERE FILL
 else {
-    $sql = "SELECT listId, line, category, machineName, machineNo, process, problem, operatorName, department,status, DATE_FORMAT(requestDateTime, '%Y-%m-%d') as dateRequest, DATE_FORMAT(requestDateTime, '%h:%i %p') as timeRequest, confirm_by  FROM tblandonrequest WHERE department = '$dept' AND category = '$prod'";
+    $sql = "SELECT listId, line, category, machineName, machineNo, process, problem,jigName, jigLocation, lineStatus, operatorName, department,status, DATE_FORMAT(requestDateTime, '%Y-%m-%d') as dateRequest, DATE_FORMAT(requestDateTime, '%h:%i %p') as timeRequest, confirm_by  FROM tblandonrequest WHERE department = '$dept' AND category = '$prod'";
     $query = $db->query($sql);
     while ($res = $query->fetch_assoc()) {
         if ($res['status'] == 'pending') {
@@ -333,7 +333,7 @@ else {
             // EQD FINAL
             elseif ($res['department'] == 'EQD' && $res['category'] == 'Final') {
                 echo "<tr style='cursor:pointer;background-color:#0b9e1f;color:white;' onclick='clickRequest(&quot;" . $res['listId'] . "&quot;)'>";
-                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] . "/" . $res['process'] . "</td>";
+                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] ."/" . $res['jigLocation'] . "/" . $res['jigName'] . "/" . $res['lineStatus'] . "/" . $res['process'] ."</td>";
                 echo "<td>" . $res['problem'] . "</td>";
                 echo "<td>" . $res['operatorName'] . "</td>";
                 echo "<td>" . $res['department'] . "</td>";
@@ -355,7 +355,7 @@ else {
             // PE FINAL
             elseif ($res['department'] == 'PE' && $res['category'] == 'Final') {
                 echo "<tr style='cursor:pointer;background-color:#fa5007;color:white;' onclick='clickRequest(&quot;" . $res['listId'] . "&quot;)'>";
-                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] . "/" . $res['process'] . "</td>";
+                echo "<td>" . $res['line'] . "/" . $res['machineName'] . " " . $res['machineNo'] ."/" . $res['jigLocation'] . "/" . $res['jigName'] . "/" . $res['lineStatus'] . "/" . $res['process'] ."</td>";
                 echo "<td>" . $res['problem'] . "</td>";
                 echo "<td>" . $res['operatorName'] . "</td>";
                 echo "<td>" . $res['department'] . "</td>";

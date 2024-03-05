@@ -57,6 +57,28 @@ body::-webkit-scrollbar-thumb {
 <input type="hidden" name="" id="countOngoingview" value="0">
 <!-- START PROJECT HERE--------------------------------------------------------------------------------------------------------->
   <div class="container-fluid">
+     <h1>Thesis Title Generator</h1>
+  <button onclick="generateTitle()">Generate Title</button>
+  <p id="title"></p>
+
+  <script>
+    // Arrays of words for generating titles
+    const topicWords = ["Impact of", "Analysis of", "Exploring", "Evaluation of", "Understanding", "Investigating"];
+    const subjectWords = ["Artificial Intelligence", "Climate Change", "Social Media", "Renewable Energy", "Urbanization", "Healthcare"];
+    const actionWords = ["on", "towards", "within", "among", "through", "around"];
+    const outcomeWords = ["Sustainability", "Public Health", "Economic Development", "Education", "Globalization", "Cultural Diversity"];
+
+    // Function to generate a random title
+    function generateTitle() {
+      const randomTopic = topicWords[Math.floor(Math.random() * topicWords.length)];
+      const randomSubject = subjectWords[Math.floor(Math.random() * subjectWords.length)];
+      const randomAction = actionWords[Math.floor(Math.random() * actionWords.length)];
+      const randomOutcome = outcomeWords[Math.floor(Math.random() * outcomeWords.length)];
+
+      const title = `${randomTopic} ${randomSubject} ${randomAction} ${randomOutcome}`;
+      document.getElementById('title').textContent = title;
+    }
+  </script>
     <div class="row">
         <div class="col-4 mt-1">
             <div class="row">
