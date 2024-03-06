@@ -11,6 +11,9 @@ if (isset($_POST['listId'])) {
          $process = $res['process'];
          $machineNo = $res['machineNo'];
          $problem = trim($res['problem']);
+         $jigLocation= $res['jigLocation'];
+         $jigName = $res['jigName'];
+         $lineStatus = $res['lineStatus'];
          $operatorName = $res['operatorName'];
          $requestDateTime = $res['requestDateTime'];
          $requestedId = $res['requestedId'];
@@ -37,6 +40,18 @@ if (isset($_POST['listId'])) {
     <tr>
         <td class="text-right" style="font-weight:bold;">Problem :</td>
         <td class="text-left"><?=$problem; ?></td>
+    </tr>
+    <tr>
+        <td class="text-right" style="font-weight:bold;">Jig Location :</td>
+        <td class="text-left"><?=$jigLocation; ?></td>
+    </tr>
+    <tr>
+        <td class="text-right" style="font-weight:bold;">Jig Name :</td>
+        <td class="text-left"><?=$jigName; ?></td>
+    </tr>
+    <tr>
+        <td class="text-right" style="font-weight:bold;">Line Status :</td>
+        <td class="text-left"><?=$lineStatus; ?></td>
     </tr>
     <tr>
         <td class="text-right" style="font-weight:bold;">Machine No :</td>
@@ -94,6 +109,9 @@ if (isset($_POST['listId'])) {
         let category = '<?= $category;?>';
         let requestedId = '<?php echo $requestedId;?>';
         let ipAddReq = '<?=$ipAddReq?>';
+        let jigLocation = '<?= $jigLocation;?>';
+        let jigName = '<?= $jigName;?>';
+        let lineStatus = '<?= $lineStatus;?>';
         if (reason =='') {
              swal({
                 title:"Warning",
@@ -113,6 +131,9 @@ if (isset($_POST['listId'])) {
                     process:process,
                     machineNo:machineNo,
                     problem:problem,
+                    jigLocation: jigLocation,
+                    jigName:jigName,
+                    lineStatus:lineStatus,
                     department:department,
                     operatorName:operatorName,
                     reason:reason,

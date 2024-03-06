@@ -103,7 +103,10 @@ else{
 	$counterMeasure = $_GET['solution'];
 	$counterMeasure = trim($counterMeasure);
 	$serialNo = trim($_GET['serial']);
-	$jigName = trim($_GET['jig_name']);
+	// $jigName = trim($_GET['jig_name']);
+	$jigLocation = $_GET['jigLocation'];
+	$jigName = $_GET['jigName'];
+	$lineStatus = $_GET['lineStatus'];
 	$circuit_loc = trim($_GET['circuitLoc']);
 	$ipAddReq = $_GET['ipPathReq'];
 	$ipAddTechAccept = $_GET['ipPathAccept'];
@@ -121,7 +124,7 @@ else{
 		echo 'counterMeasure';
 	}
 	else{
-		$endAndonSQL = "INSERT INTO tblhistory VALUES ('$id','$requestID','$categ','$line','$machineName','$machineNo','$process','$problemEncounter','$operatorName','$department','$technicianID','$technicianName','$backupTechID','$backupTechName','$backupComment','$backupReqTime','$backupAccept','$status','$waitingTime','$reqDateTime','$startFixTime','$endAndonTime','$fixInterval','$fixRemarks','$counterMeasure','$serialNo','$jigName','$circuit_loc','$lotNumber','$productNumber','$ipAddReq','$ipAddTechAccept','$ipEndAndon')";
+		$endAndonSQL = "INSERT INTO tblhistory VALUES ('$id','$requestID','$categ','$line','$machineName','$machineNo','$process','$problemEncounter','$operatorName','$department','$technicianID','$technicianName','$backupTechID','$backupTechName','$backupComment','$backupReqTime','$backupAccept','$status','$waitingTime','$reqDateTime','$startFixTime','$endAndonTime','$fixInterval','$fixRemarks','$counterMeasure','$serialNo','$jigName','$jigLocation','$lineStatus','$circuit_loc','$lotNumber','$productNumber','$ipAddReq','$ipAddTechAccept','$ipEndAndon')";
 		// IF EXECUTE THE ENTRY FROM ANDON ONGOING WILL DISAPPEAR AND TRANSFER TO HISTORY -------------------------------------------------------
 		if($db->query($endAndonSQL)){
 			// DELETE FROM ONGOING

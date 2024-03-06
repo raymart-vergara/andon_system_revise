@@ -12,6 +12,9 @@ if (isset($_POST['listId'])) {
          $process = $res['process'];
          $machineNo = $res['machineNo'];
          $problem = $res['problem'];
+         $jigLocation= $res['jigLocation'];
+         $jigName = $res['jigName'];
+         $lineStatus = $res['lineStatus'];
          $operatorName = $res['operatorName'];
          $requestDateTime = $res['requestDateTime'];
          $requestedId = $res['requestedId'];
@@ -36,6 +39,18 @@ if (isset($_POST['listId'])) {
     <tr>
         <td class="text-right" style="font-weight:bold;">Problem :</td>
         <td class="text-left"><?=$problem; ?></td>
+    </tr>
+    <tr>
+        <td class="text-right" style="font-weight:bold;">Jig Location :</td>
+        <td class="text-left"><?=$jigLocation; ?></td>
+    </tr>
+    <tr>
+        <td class="text-right" style="font-weight:bold;">Jig Name :</td>
+        <td class="text-left"><?=$jigName; ?></td>
+    </tr>
+    <tr>
+        <td class="text-right" style="font-weight:bold;">Line Status :</td>
+        <td class="text-left"><?=$lineStatus; ?></td>
     </tr>
     <tr>
         <td class="text-right" style="font-weight:bold;">Machine No :</td>
@@ -72,6 +87,9 @@ if (isset($_POST['listId'])) {
         let process = '<?= $process;?>';
         let machineNo = '<?= $machineNo;?>';
         let problem = '<?= $problem;?>';
+        let jigLocation = '<?= $jigLocation;?>';
+        let jigName = '<?= $jigName;?>';
+        let lineStatus = '<?= $lineStatus;?>';
         let department = '<?= $department;?>';
         let operatorName = '<?= $operatorName;?>';
         let requestDateTime = '<?= $requestDateTime?>';
@@ -93,6 +111,9 @@ if (isset($_POST['listId'])) {
                     process:process,
                     machineNo:machineNo,
                     problem:problem,
+                    jigLocation: jigLocation,
+                    jigName:jigName,
+                    lineStatus:lineStatus,
                     department:department,
                     operatorName:operatorName,
                     scanId:scanId,

@@ -13,14 +13,14 @@ if ($method == 'cancel_andon') {
     $department = $_POST['department'];
     $operatorName = $_POST['operatorName'];
     $reason = $_POST['reason'];
-    $reason = $_POST['jigLocation'];
-    $reason = $_POST['jigName'];
-    $reason = $_POST['lineStatus'];
+    $jigLocation= $_POST['jigLocation'];
+    $jigName = $_POST['jigName'];
+    $lineStatus = $_POST['lineStatus'];
     $category = $_POST['category'];
     $requestedId = $_POST['requestedId'];
     $requestDateTime = $_POST['requestDateTime'];
     $ip = $_POST['ipAddReq'];
-    $sql = "INSERT INTO `tblandoncancelrequest`(`listId`, `category`, `line`, `machineName`, `machineNo`, `process`, `problem`, `requestedId`, `operatorName`, `department`, `status`, `requestDateTime`, `reason`, `cancelDateTime`,`ipPathReq`) VALUES ('','$category','$line','$machineName','$machineNo','$process','$problem','$requestedId','$operatorName','$department','Cancel','$requestDateTime','$reason','$datenow','$ip')";
+    $sql = "INSERT INTO `tblandoncancelrequest`(`listId`, `category`, `line`, `machineName`, `machineNo`, `process`, `problem`,`jigLocation`,`jigName`,`lineStatus`, `requestedId`, `operatorName`, `department`, `status`, `requestDateTime`, `reason`, `cancelDateTime`,`ipPathReq`) VALUES ('','$category','$line','$machineName','$machineNo','$process','$problem','$jigLocation','$jigName','$lineStatus','$requestedId','$operatorName','$department','Cancel','$requestDateTime','$reason','$datenow','$ip')";
     $query = $db->query($sql);
     $delete = "DELETE FROM tblandonrequest where listId = '$listId'";
     $deleteQ = $db->query($delete);
@@ -35,6 +35,9 @@ if ($method == 'startFix') {
     $process = $_POST['process'];
     $machineNo = $_POST['machineNo'];
     $problem = $_POST['problem'];
+    $jigLocation= $_POST['jigLocation'];
+    $jigName = $_POST['jigName'];
+    $lineStatus = $_POST['lineStatus'];
     $department = $_POST['department'];
     $operatorName = $_POST['operatorName'];
     $category = $_POST['category'];
@@ -59,7 +62,7 @@ if ($method == 'startFix') {
             echo 'ongoing';
         } else {
             // IF NO ONGOING ANDON INSERT TO DATABASE--------------------------------------------------------------------------------------
-            $sql = "INSERT INTO `tblandonongoing`(`listId`, `requestedId`, `category`, `line`, `machineName`, `machineNo`, `process`, `problem`, `operatorName`, `department`, `technicianId`, `technicianName`, `backupTechnicianId`, `backupTechnicianName`, `backupComment`, `backupRequestTime`,`backupAccept`, `status`, `requestDateTime`, `startDateTime`,`ipPathReq`,`ipPathTechAccept`) VALUES ('0','$listId','$category','$line','$machineName','$machineNo','$process','$problem','$operatorName','$department','$scanId','$fullName','','','','','','Ongoing','$requestDateTime','$datenow','$ipPathReq','$ipPathAccept')";
+            $sql = "INSERT INTO `tblandonongoing`(`listId`, `requestedId`, `category`, `line`, `machineName`, `machineNo`, `process`, `problem`,`jigLocation`,`jigName`,`lineStatus`, `operatorName`, `department`, `technicianId`, `technicianName`, `backupTechnicianId`, `backupTechnicianName`, `backupComment`, `backupRequestTime`,`backupAccept`, `status`, `requestDateTime`, `startDateTime`,`ipPathReq`,`ipPathTechAccept`) VALUES ('0','$listId','$category','$line','$machineName','$machineNo','$process','$problem','$jigLocation','$jigName','$lineStatus','$operatorName','$department','$scanId','$fullName','','','','','','Ongoing','$requestDateTime','$datenow','$ipPathReq','$ipPathAccept')";
             $query = $db->query($sql);
             $delete = "DELETE FROM tblandonrequest where listId = '$listId'";
             $deleteQ = $db->query($delete);
