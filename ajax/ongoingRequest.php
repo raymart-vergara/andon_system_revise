@@ -50,24 +50,24 @@ if (isset($_POST['listId'])) {
                 <?= $problem; ?>
             </td>
         </tr>
-        <tr>
-            <td class="text-right" style="font-weight:bold;">Jig Location :</td>
-            <td class="text-left">
-                <?= $jigLocation; ?>
-            </td>
-        </tr>
-        <tr>
-            <td class="text-right" style="font-weight:bold;">Jig Name :</td>
-            <td class="text-left">
-                <?= $jigName; ?>
-            </td>
-        </tr>
-        <tr>
-            <td class="text-right" style="font-weight:bold;">Line Status :</td>
-            <td class="text-left">
-                <?= $lineStatus; ?>
-            </td>
-        </tr>
+        <?php
+            if (($department === 'PE' && $category === 'Final') || $department === 'EQD'&& $category === 'Final') {
+                echo '<tr>';
+                echo '<td class="text-right" style="font-weight:bold;">Jig Location :</td>';
+                echo '<td class="text-left">'.$jigLocation.'</td>';
+                echo '</tr>';
+
+                echo '<tr>';
+                echo '<td class="text-right" style="font-weight:bold;">Jig Location :</td>';
+                echo '<td class="text-left">'.$jigName.'</td>';
+                echo '</tr>';
+
+                echo '<tr>';
+                echo '<td class="text-right" style="font-weight:bold;">Jig Location :</td>';
+                echo '<td class="text-left">'.$lineStatus.'</td>';
+                echo '</tr>';
+            }
+            ?>
         <tr>
             <td class="text-right" style="font-weight:bold;">Machine No :</td>
             <td class="text-left">

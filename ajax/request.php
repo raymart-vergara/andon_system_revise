@@ -26,7 +26,6 @@ if ($method == 'cancel_andon') {
     $deleteQ = $db->query($delete);
     echo 'deleted';
 }
-
 // STARTFIX -------------------------------------------------------------------------------------------------------------------
 if ($method == 'startFix') {
     $listId = $_POST['listId'];
