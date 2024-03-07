@@ -104,42 +104,22 @@ if (isset($_POST['listIDforChange'])) {
     <tr>
       <td>Jig Location:</td>
       <td>
-        <select class="custom-select browser-default z-depth-3" id="problem_change" style="width:100%;">
-          <option value="<?= $problem; ?>" style="font-weight:bold;">
-            <?= $problem; ?>
-          </option>
-          <?php
-          $process = "SELECT DISTINCT problem FROM tblproblem WHERE department = '$department' AND machineName ='$machineName' ORDER BY problem ASC";
-          $query = $db->query($process);
-          if (mysqli_num_rows($query) > 0) {
-            while ($x = mysqli_fetch_assoc($query)) {
-              echo '<option>' . $x['problem'] . '</option>';
-            }
-          }
-          ?>
-        </select>
+        <input class="custom-select browser-default z-depth-3" id="jigLocation_change" value="<?= $jigLocation; ?>" style="width:100%;"></input>
       </td>
     </tr>
     <tr>
       <td>Jig Name:</td>
       <td>
-        <select class="custom-select browser-default z-depth-3" id="problem_change" style="width:100%;">
-          <option value="<?= $problem; ?>" style="font-weight:bold;">
-            <?= $problem; ?>
-          </option>
-          <?php
-          $process = "SELECT DISTINCT problem FROM tblproblem WHERE department = '$department' AND machineName ='$machineName' ORDER BY problem ASC";
-          $query = $db->query($process);
-          if (mysqli_num_rows($query) > 0) {
-            while ($x = mysqli_fetch_assoc($query)) {
-              echo '<option>' . $x['problem'] . '</option>';
-            }
-          }
-          ?>
-        </select>
+        <input class="custom-select browser-default z-depth-3" id="jigName_change" value="<?= $jigName; ?>" style="width:100%;"></input>
       </td>
     </tr>
-    
+    <tr>
+      <td>Line Status:</td>
+      <td>
+        <input class="custom-select browser-default z-depth-3" id="lineStatus_change" value="<?= $lineStatus; ?>" style="width:100%;"></input>
+      </td>
+    </tr>
+
   </table>
 
   <?php
