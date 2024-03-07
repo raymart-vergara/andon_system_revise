@@ -75,24 +75,24 @@ if (isset($_GET['listId'])) {
                         <?= $problem; ?>
                     </td>
                 </tr>
-                <tr>
-                    <td class="text-right" style="font-size:12px;" style="font-size:12px;">Jig Location :</td>
-                    <td class="text-left" style="font-size:12px;font-weight: bold;">
-                        <?= $jigLocation; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right" style="font-size:12px;" style="font-size:12px;">Jig Name :</td>
-                    <td class="text-left" style="font-size:12px;font-weight: bold;">
-                        <?= $jigName; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right" style="font-size:12px;" style="font-size:12px;">Line Status :</td>
-                    <td class="text-left" style="font-size:12px;font-weight: bold;">
-                        <?= $lineStatus; ?>
-                    </td>
-                </tr>
+                <?php
+            if (($department === 'PE' && $category === 'Final') || $department === 'EQD'&& $category === 'Final') {
+                echo '<tr>';
+                echo '<td class="text-right" style="font-size:12px;" style="font-size:12px;">Jig Location :</td>';
+                echo '<td class="text-left" style="font-size:12px;font-weight: bold;">'. $jigLocation.' </td>';
+                echo '</tr>';
+
+                echo '<tr>';
+                echo '<td class="text-right" style="font-size:12px;" style="font-size:12px;">Jig Name :</td>';
+                echo '<td class="text-left" style="font-size:12px;font-weight: bold;">'. $jigName.' </td>';
+                echo '</tr>';
+
+                echo '<tr>';
+                echo '<td class="text-right" style="font-size:12px;" style="font-size:12px;">Line Status :</td>';
+                echo '<td class="text-left" style="font-size:12px;font-weight: bold;">'. $lineStatus.' </td>';
+                echo '</tr>';
+            }
+            ?>
                 <tr>
                     <td class="text-right" style="font-size:12px;" style="font-size:12px;">Machine No :</td>
                     <td class="text-left" style="font-size:12px;font-weight: bold;">
