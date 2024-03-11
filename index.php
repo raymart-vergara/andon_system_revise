@@ -163,7 +163,7 @@ include 'database/index.php';
                   placeholder="Jig Location" autocomplete="off" disabled required>
               </div>
               <div class="jigName col-12 text-center mt-2" style="display: none;">
-              <input type="text" id="jigName" name="jigName" class="z-depth-1 form-control" disabled
+                <input type="text" id="jigName" name="jigName" class="z-depth-1 form-control" disabled
                   placeholder="Jig Name" autocomplete="off" disabled required>
               </div>
               <div class="lineStatus col-12 text-center mt-2" style="display: none;">
@@ -682,27 +682,34 @@ include 'database/index.php';
       $('#jigLocation').focus();
     });
     // -------------------------------------------------------------------------------------------------------------------------------
-    $('#jigLocation').change(function () {
-      $(this).attr('disabled', true);
-      $('#jigName').attr('disabled', false);
-      $('#jigName').focus();
-    });
-    // -------------------------------------------------------------------------------------------------------------------------------
-    $('#jigName').change(function () {
-      $(this).attr('disabled', true);
-      $('#lineStatus').attr('disabled', false);
-      $('#lineStatus').focus();
-    });
-    $('#lineStatus').change(function () {
-      $(this).attr('disabled', true);
-      $('#btnSubmit').attr('disabled', false);
-    });
-    // -------------------------------------------------------------------------------------------------------------------------------
     $('#problem').change(function () {
-      $(this).attr('disabled', true);
-      $('#btnSubmit').attr('disabled', false);
+      var selectedOption = $('#deptDiv').val();
+      var selectCategory = $('#category').val();
+      if (selectCategory === 'Final' && (selectedOption === 'PE' || selectedOption === 'EQD')) {
+        $('#jigLocation').change(function () {
+          $(this).attr('disabled', true);
+          $('#jigName').attr('disabled', false);
+          $('#jigName').focus();
+        });
+        // -------------------------------------------------------------------------------------------------------------------------------
+        $('#jigName').change(function () {
+          $(this).attr('disabled', true);
+          $('#lineStatus').attr('disabled', false);
+          $('#lineStatus').focus();
+        });
+        $('#lineStatus').change(function () {
+          $(this).attr('disabled', true);
+          $('#btnSubmit').attr('disabled', false);
+        });
+      } else {
+        $(this).attr('disabled', true);
+        $('#btnSubmit').attr('disabled', false);
+      }
 
     });
+    // -------------------------------------------------------------------------------------------------------------------------------
+
+
     // ----------------------------------------------------------------------------------------------------------------------------------------
 
     $('.select').selectize({
@@ -842,8 +849,8 @@ include 'database/index.php';
           n_machine_no: n_machine_no,
           n_problem: n_problem,
           n_jigLocation: n_jigLocation,
-          n_jigName : n_jigName,
-          n_lineStatus : n_lineStatus,
+          n_jigName: n_jigName,
+          n_lineStatus: n_lineStatus,
 
         }, success: function (response) {
           // console.log(response);
