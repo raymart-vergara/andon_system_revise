@@ -101,25 +101,30 @@ if (isset($_POST['listIDforChange'])) {
         </select>
       </td>
     </tr>
-    <tr>
-      <td>Jig Location:</td>
-      <td>
-        <input class="custom-select browser-default z-depth-3" id="jigLocation_change" value="<?= $jigLocation; ?>" style="width:100%;"></input>
-      </td>
-    </tr>
-    <tr>
-      <td>Jig Name:</td>
-      <td>
-        <input class="custom-select browser-default z-depth-3" id="jigName_change" value="<?= $jigName; ?>" style="width:100%;"></input>
-      </td>
-    </tr>
-    <tr>
-      <td>Line Status:</td>
-      <td>
-        <input class="custom-select browser-default z-depth-3" id="lineStatus_change" value="<?= $lineStatus; ?>" style="width:100%;"></input>
-      </td>
-    </tr>
+    <?php
+    if (($department === 'PE' && $category === 'Final') || ($department === 'EQD' && $category === 'Final')) {
+      echo '<tr>';
+      echo '<td>Jig Location:</td>';
+      echo '<td>';
+      echo '<input class="custom-select browser-default z-depth-3" id="jigLocation_change" value="' . $jigLocation . '"style="width:100%;"></input>';
+      echo '</td>';
+      echo '</tr>';
 
+      echo '<tr>';
+      echo '<td>Jig Name:</td>';
+      echo '<td>';
+      echo '<input class="custom-select browser-default z-depth-3" id="jigName_change" value="' . $jigName . '"style="width:100%;"></input>';
+      echo '</td>';
+      echo '</tr>';
+
+      echo '<tr>';
+      echo '<td>Line Status:</td>';
+      echo '<td>';
+      echo '<input class="custom-select browser-default z-depth-3" id="lineStatus_change" value="' . $lineStatus . '"style="width:100%;"></input>';
+      echo '</td>';
+      echo '</tr>';
+    }
+    ?>
   </table>
 
   <?php

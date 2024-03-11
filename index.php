@@ -826,6 +826,9 @@ include 'database/index.php';
       n_process = $('#process_change').val();
       n_machine_no = $('#machine_num_change').val();
       n_problem = $('#problem_change').val();
+      n_jigLocation = $('#jigLocation_change').val();
+      n_jigName = $('#jigName_change').val();
+      n_lineStatus = $('#lineStatus_change').val();
 
       $.ajax({
         url: 'ajax/changeinfo.php',
@@ -837,7 +840,11 @@ include 'database/index.php';
           n_machine: n_machine,
           n_process: n_process,
           n_machine_no: n_machine_no,
-          n_problem: n_problem
+          n_problem: n_problem,
+          n_jigLocation: n_jigLocation,
+          n_jigName : n_jigName,
+          n_lineStatus : n_lineStatus,
+
         }, success: function (response) {
           // console.log(response);
           if (response == 'updated') {

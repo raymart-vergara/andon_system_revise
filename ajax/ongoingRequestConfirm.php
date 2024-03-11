@@ -76,7 +76,7 @@ if (isset($_GET['listId'])) {
                     </td>
                 </tr>
                 <?php
-            if (($department === 'PE' && $category === 'Final') || $department === 'EQD'&& $category === 'Final') {
+            if (($department === 'PE' && $category === 'Final') ||( $department === 'EQD'&& $category === 'Final')) {
                 echo '<tr>';
                 echo '<td class="text-right" style="font-size:12px;" style="font-size:12px;">Jig Location :</td>';
                 echo '<td class="text-left" style="font-size:12px;font-weight: bold;">'. $jigLocation.' </td>';

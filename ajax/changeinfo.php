@@ -45,7 +45,10 @@
         $process = $_POST['n_process'];
         $machine_no = $_POST['n_machine_no'];
         $problem = $_POST['n_problem'];
-        $sql = "UPDATE tblandonongoing SET machineName = '$machine', machineNo = '$machine_no',process = '$process', problem = '$problem' WHERE listId = '$id'";
+        $jigLocation= $_POST['n_jigLocation'];
+        $jigName = $_POST['n_jigName'];
+        $lineStatus = $_POST['n_lineStatus'];
+        $sql = "UPDATE tblandonongoing SET machineName = '$machine', machineNo = '$machine_no',process = '$process', problem = '$problem', jigLocation = '$jigLocation', jigName = '$jigName', lineStatus = '$lineStatus' WHERE listId = '$id'";
         if($db->query($sql) === TRUE){
             echo 'updated';
         }else{

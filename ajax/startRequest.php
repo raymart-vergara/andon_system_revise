@@ -49,7 +49,7 @@ if (isset($_POST['listId'])) {
                 </td>
             </tr>
             <?php
-            if (($department === 'PE' && $category === 'Final') || $department === 'EQD'&& $category === 'Final') {
+            if (($department === 'PE' && $category === 'Final') || ($department === 'EQD'&& $category === 'Final')) {
                 echo '<tr>';
                 echo '<td class="text-right" style="font-weight:bold;">Jig Location :</td>';
                 echo '<td class="text-left">'.$jigLocation.'</td>';
