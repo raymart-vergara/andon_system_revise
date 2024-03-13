@@ -45,7 +45,7 @@ if($method == 'requestAndon') {
     $lineStatus = $_POST['lineStatus'];
 
     // Check if a record with the same department, line, and machine already exists in  STATUS = pending
-    $checkQuery = "SELECT * FROM tblandonrequest WHERE `department` = '$department' AND `line` = '$line' AND `machineName` = '$machine'";
+    $checkQuery = "SELECT * FROM tblandonrequest WHERE `department` = '$department' AND `line` = '$line' AND `machineName` = '$machine' AND  `machineNo` = '$machineNumber'";
     $result = $db->query($checkQuery);
 	  // Check if a record with the same department, line, and machine already exists in  STATUS = ongoing
 	$checkOngoing = "SELECT * FROM tblandonongoing WHERE `department` = '$department' AND `line` = '$line' AND `machineName` = '$machine'";

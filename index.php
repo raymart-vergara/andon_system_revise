@@ -167,8 +167,12 @@ include 'database/index.php';
                   placeholder="Jig Name" autocomplete="off" disabled required>
               </div>
               <div class="lineStatus col-12 text-center mt-2" style="display: none;">
-                <input type="text" id="lineStatus" name="lineStatus" class="z-depth-1 form-control" disabled
-                  placeholder="Line Status" autocomplete="off" disabled required>
+                <select class="z-depth-1 custom-select browser-default" disabled id="lineStatus">
+                  <option value="">Line Status</option>
+                  <option value="Still Running">Still Running</option>
+                  <option value="Stopped Running">Stopped Running</option>
+
+                </select>
               </div>
               <div class="col-12 text-center">
                 <!-- <input type="submit" value="Submit" id="btnSubmit" class="btn btn-danger" > -->
