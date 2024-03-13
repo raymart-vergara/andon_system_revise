@@ -58,12 +58,12 @@ if (isset($_POST['listId'])) {
                 echo '</tr>';
 
                 echo '<tr>';
-                echo '<td class="text-right" style="font-weight:bold;">Jig Location :</td>';
+                echo '<td class="text-right" style="font-weight:bold;">Jig Name :</td>';
                 echo '<td class="text-left">'.$jigName.'</td>';
                 echo '</tr>';
 
                 echo '<tr>';
-                echo '<td class="text-right" style="font-weight:bold;">Jig Location :</td>';
+                echo '<td class="text-right" style="font-weight:bold;">Line Status :</td>';
                 echo '<td class="text-left">'.$lineStatus.'</td>';
                 echo '</tr>';
             }
