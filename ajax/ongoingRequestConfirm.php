@@ -76,23 +76,24 @@ if (isset($_GET['listId'])) {
                     </td>
                 </tr>
                 <?php
-            if (($department === 'PE' && $category === 'Final') ||( $department === 'EQD'&& $category === 'Final')) {
-                echo '<tr>';
-                echo '<td class="text-right" style="font-size:12px;" style="font-size:12px;">Jig Location :</td>';
-                echo '<td class="text-left" style="font-size:12px;font-weight: bold;">'. $jigLocation.' </td>';
-                echo '</tr>';
+                if (($department === 'PE' && $category === 'Final') || ($department === 'EQD' && $category === 'Final')) {
+                    echo '<tr>';
+                    echo '<td class="text-right" style="font-size:12px;" style="font-size:12px;">Jig Location :</td>';
+                    echo '<td class="text-left" style="font-size:12px;font-weight: bold;">' . $jigLocation . ' </td>';
+                    echo '</tr>';
 
-                echo '<tr>';
-                echo '<td class="text-right" style="font-size:12px;" style="font-size:12px;">Jig Name :</td>';
-                echo '<td class="text-left" style="font-size:12px;font-weight: bold;">'. $jigName.' </td>';
-                echo '</tr>';
+                    echo '<tr>';
+                    echo '<td class="text-right" style="font-size:12px;" style="font-size:12px;">Jig Name :</td>';
+                    echo '<td class="text-left" style="font-size:12px;font-weight: bold;">' . $jigName . ' </td>';
+                    echo '</tr>';
 
-                echo '<tr>';
-                echo '<td class="text-right" style="font-size:12px;" style="font-size:12px;">Line Status :</td>';
-                echo '<td class="text-left" style="font-size:12px;font-weight: bold;">'. $lineStatus.' </td>';
-                echo '</tr>';
-            }
-            ?>
+                    echo '<tr>';
+                    echo '<td class="text-right" style="font-size:12px;" style="font-size:12px;">Line Status :</td>';
+                    echo '<td class="text-left" style="font-size:12px;font-weight: bold;">' . $lineStatus . ' </td>';
+                    echo '</tr>';
+
+                }
+                ?>
                 <tr>
                     <td class="text-right" style="font-size:12px;" style="font-size:12px;">Machine No :</td>
                     <td class="text-left" style="font-size:12px;font-weight: bold;">
@@ -181,8 +182,22 @@ if (isset($_GET['listId'])) {
                     ?>
                 </select>
                 <!-- INPUT ------------------------------------------------------------------------------------------------------------------>
-                    <input type="text" class="form-control text-center mt-1 z-depth-1" id="solutionInput"
-                        placeholder="Manual Input of Solution" style="font-size:12px;" oninput="verify_solution()">
+                    <input list="solutionDatalist" type="text" class="form-control text-center mt-1 z-depth-1"
+                        id="solutionInput" placeholder="Additional Solution" style="font-size:12px;" oninput="verify_solution()">
+                    <datalist id="solutionDatalist">
+                        <?php
+                        $sqlSelect = "SELECT DISTINCT solution from tblsolution where department like '$department%' AND machineName like '$machineName%' ORDER BY solution ASC";
+                        $qrySelect = $db->query($sqlSelect);
+                        while ($resSelect = $qrySelect->fetch_assoc()) {
+                            echo "<option value='" . $resSelect['solution'] . "'>" . $resSelect['solution'] . "</option>";
+                        }
+                        ?>
+                    </datalist>
+                      <input list="solutionDatalist" type="text" class="form-control text-center mt-1 z-depth-1"
+                        id="addSolution1" placeholder="Additional Solution" style="font-size:12px;" oninput="verify_solution()">
+                        <input list="solutionDatalist" type="text" class="form-control text-center mt-1 z-depth-1"
+                        id="addSolution2" placeholder="Additional Solution" style="font-size:12px;" oninput="verify_solution()">
+
                     <input type="text" class="form-control text-center mt-1 z-depth-1" name="serial" id="serial"
                         placeholder="Serial number" style="font-size:12px;">
                     <!-- CONFIRM BUTTON --------------------------------------------------------------------------------------------------------->
@@ -411,7 +426,7 @@ if (isset($_GET['listId'])) {
         var andonEndDateTime = '<?= $endDateTime; ?>';
         var fixInterval = '<?= $interval; ?>';
         var fixRemarks = '<?= $statusFix; ?>';
-        var solution = $("#solutionSelect").val() + " " + $('#solutionInput').val();
+        var solution = $("#solutionSelect").val() + " " + $('#solutionInput').val() + " " + $('#addSolution1').val() + " " + $('#addSolution2').val();
         var serialNum = $("#serial").val();
         // var jigName = $("#jigName").val();
         var circuitLoc = $("#circuitLocation").val();

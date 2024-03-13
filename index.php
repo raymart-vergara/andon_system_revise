@@ -171,7 +171,6 @@ include 'database/index.php';
                   <option value="">Line Status</option>
                   <option value="Still Running">Still Running</option>
                   <option value="Stopped Running">Stopped Running</option>
-
                 </select>
               </div>
               <div class="col-12 text-center">

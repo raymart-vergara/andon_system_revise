@@ -117,10 +117,13 @@ if (isset($_POST['listIDforChange'])) {
       echo '</td>';
       echo '</tr>';
 
-      echo '<tr>';
       echo '<td>Line Status:</td>';
       echo '<td>';
-      echo '<input class="custom-select browser-default z-depth-3" id="lineStatus_change" value="' . $lineStatus . '"style="width:100%;"></input>';
+      echo '<select class="z-depth-3 custom-select browser-default" id="lineStatus_change">';
+      echo '<option value="' . $lineStatus . '">' . $lineStatus . '</option>';
+      echo '<option value="Still Running">Still Running</option>';
+      echo '<option value="Stopped Running">Stopped Running</option>';
+      echo '</select>';
       echo '</td>';
       echo '</tr>';
     }
