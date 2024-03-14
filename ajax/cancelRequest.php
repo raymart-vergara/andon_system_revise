@@ -21,7 +21,6 @@ if (isset($_POST['listId'])) {
         $category = $res['category'];
         $ipAddReq = $res['ipPathReq'];
     }
-
     ?>
 
     <table class="table-sm">
