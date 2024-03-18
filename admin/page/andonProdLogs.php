@@ -124,13 +124,13 @@ body{
 					<th>Technician</th>
           			<th>Department</th>
 					<th>Solution</th>
-					<th>Serial Number</th>
+					<!-- <th>Serial Number</th> -->
 					<th>Jig Name</th>
 					<th>Jig Location</th>
 					<th>Line Status</th>
-					<th>Circuit Location</th>
-					<th>Lot Number</th>
-					<th>Product Number</th>
+					<!-- <th>Circuit Location</th> -->
+					<!-- <th>Lot Number</th> -->
+					<!-- <th>Product Number</th> -->
 					<th>Fixing Status</th>
 					<th>Backup Request Time</th>
 					<th>Backup Comment</th>

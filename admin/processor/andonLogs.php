@@ -103,13 +103,13 @@
 				echo '<td>'.$x['technicianName'].'</td>';
 				echo '<td>'.$x['department'].'</td>';
 				echo '<td>'.$x['counter_measure'].'</td>';
-				echo '<td>'.$x['serial_num'].'</td>';
+				// echo '<td>'.$x['serial_num'].'</td>';
 				echo '<td>'.$x['jigName'].'</td>';
 				echo '<td>'.$x['jigLocation'].'</td>';
 				echo '<td>'.$x['lineStatus'].'</td>';
-				echo '<td>'.$x['circuit_location'].'</td>';
-				echo '<td>'.$x['lotNumber'].'</td>';
-				echo '<td>'.$x['productNumber'].'</td>';
+				// echo '<td>'.$x['circuit_location'].'</td>';
+				// echo '<td>'.$x['lotNumber'].'</td>';
+				// echo '<td>'.$x['productNumber'].'</td>';
 				echo '<td>'.$x['fixRemarks'].'</td>';
 				echo '<td>'.$x['backupRequestTime'].'</td>';
 				echo '<td>'.$x['backupComment'].'</td>';
