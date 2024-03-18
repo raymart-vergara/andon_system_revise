@@ -224,19 +224,19 @@ if (isset($_GET['listId'])) {
         <div class="col-sm-6">
             <!-- JIG DETAILS FOR PE -->
             <?php
-            if ($department == "PE") {
-                echo '<legend style="font-size:15px;font-weight:bold;">JIG DETAILS</legend>';
-            }
+            // if ($department == "PE") {
+            //     echo '<legend style="font-size:15px;font-weight:bold;">JIG DETAILS</legend>';
+            // }
             ?>
             <fieldset>
                 <?php
-                if ($department == "PE") {
-                    echo '<input type="text" name="jigName" id="jigName" class="form-control text-center z-depth-1" placeholder="Jig name" autocomplete="off" style="font-size:12px;">';
-                    echo '<input type="text" name="circuitLocation" id="circuitLocation" class="form-control text-center mt-2 z-depth-1" placeholder="Circuit / Location" autocomplete="off" style="font-size:12px;">';
-                } else {
-                    echo '<input type="text" name="jigName" id="jigName" class="form-control text-center z-depth-1" placeholder="Jig name" autocomplete="off" style="font-size:12px;display:none;">';
-                    echo '<input type="text" name="circuitLocation" id="circuitLocation" class="form-control text-center mt-2 z-depth-1" placeholder="Circuit / Location" autocomplete="off" style="font-size:12px;display:none;">';
-                }
+                // if ($department == "PE") {
+                //     echo '<input type="text" name="jigName" id="jigName" class="form-control text-center z-depth-1" placeholder="Jig name" autocomplete="off" style="font-size:12px;">';
+                //     echo '<input type="text" name="circuitLocation" id="circuitLocation" class="form-control text-center mt-2 z-depth-1" placeholder="Circuit / Location" autocomplete="off" style="font-size:12px;">';
+                // } else {
+                //     echo '<input type="text" name="jigName" id="jigName" class="form-control text-center z-depth-1" placeholder="Jig name" autocomplete="off" style="font-size:12px;display:none;">';
+                //     echo '<input type="text" name="circuitLocation" id="circuitLocation" class="form-control text-center mt-2 z-depth-1" placeholder="Circuit / Location" autocomplete="off" style="font-size:12px;display:none;">';
+                // }
                 ?>
                 <!-- SHOW FIELDS SOLUTION SELECT ---------------------------------------------------------------------------------------------->
                 <?php

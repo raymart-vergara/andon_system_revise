@@ -71,6 +71,12 @@
 					if($x['jigName'] == ''){
 						$x['jigName'] = 'N/A';
 					}
+					if($x['jigLocation'] == ''){
+						$x['jigLocation'] = 'N/A';
+					}
+					if($x['lineStatus'] == ''){
+						$x['lineStatus'] = 'N/A';
+					}
 					if($x['circuit_location'] == ''){
 						$x['circuit_location'] = 'N/A';
 					}
@@ -103,6 +109,8 @@
 				echo '<td>'.$x['counter_measure'].'</td>';
 				echo '<td>'.$x['serial_num'].'</td>';
 				echo '<td>'.$x['jigName'].'</td>';
+				echo '<td>'.$x['jigLocation'].'</td>';
+				echo '<td>'.$x['lineStatus'].'</td>';
 				echo '<td>'.$x['circuit_location'].'</td>';
 				echo '<td>'.$x['lotNumber'].'</td>';
 				echo '<td>'.$x['productNumber'].'</td>';
@@ -194,6 +202,12 @@ if($method == 'searchMTTR'){
 					}
 					if($x['jigName'] == ''){
 						$x['jigName'] = 'N/A';
+					}
+					if($x['jigLocation'] == ''){
+						$x['jigLocation'] = 'N/A';
+					}
+					if($x['lineStatus'] == ''){
+						$x['lineStatus'] = 'N/A';
 					}
 					if($x['circuit_location'] == ''){
 						$x['circuit_location'] = 'N/A';

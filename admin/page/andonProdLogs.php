@@ -126,6 +126,8 @@ body{
 					<th>Solution</th>
 					<th>Serial Number</th>
 					<th>Jig Name</th>
+					<th>Jig Location</th>
+					<th>Line Status</th>
 					<th>Circuit Location</th>
 					<th>Lot Number</th>
 					<th>Product Number</th>
