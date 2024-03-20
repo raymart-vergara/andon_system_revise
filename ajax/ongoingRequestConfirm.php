@@ -426,7 +426,6 @@ if (isset($_GET['listId'])) {
         var andonEndDateTime = '<?= $endDateTime; ?>';
         var fixInterval = '<?= $interval; ?>';
         var fixRemarks = '<?= $statusFix; ?>';
-        var solution = $("#solutionSelect").val() + " " + $('#solutionInput').val() + " " + $('#addSolution1').val() + " " + $('#addSolution2').val();
         var serialNum = $("#serial").val();
         // var jigName = $("#jigName").val();
         var circuitLoc = $("#circuitLocation").val();
@@ -442,6 +441,32 @@ if (isset($_GET['listId'])) {
         var replaceStat = $('#replaceStat').val();
         var work_order_no = $('#app_work_order_no').val();
         var concern_trd = '<?= $trd_concern; ?>';
+        
+        if ($("#solutionSelect").val()!=='' &&  $('#solutionInput').val() =='' &&  $('#addSolution1').val() =='' &&  $('#addSolution2').val() =='' ) {
+            var solution =  $("#solutionSelect").val();
+        }
+        if ($("#solutionSelect").val()!=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() =='' &&  $('#addSolution2').val() =='' ) {
+            var solution = $("#solutionSelect").val() + " ; " + $('#solutionInput').val()
+        }
+        if ($("#solutionSelect").val()!=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() !=='' &&  $('#addSolution2').val() =='' ) {
+            var solution = $("#solutionSelect").val() + " ; " + $('#solutionInput').val() + " ; " + $('#addSolution1').val()
+        }
+        if ($("#solutionSelect").val()!=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() !=='' &&  $('#addSolution2').val() !=='' ) {
+            var solution = $("#solutionSelect").val() + " ; " + $('#solutionInput').val() + " ; " + $('#addSolution1').val() + " ; " + $('#addSolution2').val();
+        }
+        if ($("#solutionSelect").val()!=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() !=='' &&  $('#addSolution2').val() !=='' ) {
+            var solution = $("#solutionSelect").val() + " ; " + $('#solutionInput').val() + " ; " + $('#addSolution1').val() + " ; " + $('#addSolution2').val();
+        }
+
+        if ($("#solutionSelect").val()=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() =='' &&  $('#addSolution2').val() =='' ) {
+            var solution =  $("#solutionInput").val();
+        }
+        if ($("#solutionSelect").val()=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() !=='' &&  $('#addSolution2').val() =='' ) {
+            var solution = $("#solutionInput").val() + " ; " + $('#addSolution1').val()
+        }
+        if ($("#solutionSelect").val()=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() !=='' &&  $('#addSolution2').val() !=='' ) {
+            var solution = $("#solutionInput").val() + " ; " + $('#addSolution1').val() + " ; " + $('#addSolution2').val()
+        }
         // TRD APPLICATOR TROUBLE  ----------------------------------------------------------------------------------------------------
         if (department == 'EQD' && machineName == 'TRD' && concern_trd == 'Applicator') {
             if (solutionTRD == 'trouble') {
