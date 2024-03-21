@@ -183,7 +183,8 @@ if (isset($_GET['listId'])) {
                 </select>
                 <!-- INPUT ------------------------------------------------------------------------------------------------------------------>
                     <input list="solutionDatalist" type="text" class="form-control text-center mt-1 z-depth-1"
-                        id="solutionInput" placeholder="Additional Solution" style="font-size:12px;" oninput="verify_solution()">
+                        id="solutionInput" placeholder="Additional Solution" style="font-size:12px;"
+                        oninput="verify_solution()">
                     <datalist id="solutionDatalist">
                         <?php
                         $sqlSelect = "SELECT DISTINCT solution from tblsolution where department like '$department%' AND machineName like '$machineName%' ORDER BY solution ASC";
@@ -193,10 +194,12 @@ if (isset($_GET['listId'])) {
                         }
                         ?>
                     </datalist>
-                      <input list="solutionDatalist" type="text" class="form-control text-center mt-1 z-depth-1"
-                        id="addSolution1" placeholder="Additional Solution" style="font-size:12px;" oninput="verify_solution()">
-                        <input list="solutionDatalist" type="text" class="form-control text-center mt-1 z-depth-1"
-                        id="addSolution2" placeholder="Additional Solution" style="font-size:12px;" oninput="verify_solution()">
+                    <input list="solutionDatalist" type="text" class="form-control text-center mt-1 z-depth-1"
+                        id="addSolution1" placeholder="Additional Solution" style="font-size:12px;"
+                        oninput="verify_solution()" disabled>
+                    <input list="solutionDatalist" type="text" class="form-control text-center mt-1 z-depth-1"
+                        id="addSolution2" placeholder="Additional Solution" style="font-size:12px;"
+                        oninput="verify_solution()" disabled>
 
                     <input type="text" class="form-control text-center mt-1 z-depth-1" name="serial" id="serial"
                         placeholder="Serial number" style="font-size:12px;">
@@ -299,6 +302,7 @@ if (isset($_GET['listId'])) {
 ?>
 <!-- END ADDITIONAL FORM------------------------------------------------------------------------------------------------------ -->
 <script>
+
     function verify_solution() {
         var txt = $('#solutionInput').val();
         var match = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
@@ -334,6 +338,19 @@ if (isset($_GET['listId'])) {
             swal('Really?');
         }
     }
+    $('#solutionInput').change(function () {
+        $(this).attr('disabled', true);
+        $('#addSolution1').attr('disabled', false);
+        $('#endAndonBtn').attr('disabled', false);
+        $('#addSolution1').focus();
+        
+    });
+    $('#addSolution1').change(function () {
+        $(this).attr('disabled', true);
+        $('#addSolution2').attr('disabled', false);
+        $('#addSolution2').focus();
+    });
+    
 
     $('.select').selectize({ sortField: 'text' });
     $('#confirmationBTN').click(function () {
@@ -441,30 +458,30 @@ if (isset($_GET['listId'])) {
         var replaceStat = $('#replaceStat').val();
         var work_order_no = $('#app_work_order_no').val();
         var concern_trd = '<?= $trd_concern; ?>';
-        
-        if ($("#solutionSelect").val()!=='' &&  $('#solutionInput').val() =='' &&  $('#addSolution1').val() =='' &&  $('#addSolution2').val() =='' ) {
-            var solution =  $("#solutionSelect").val();
+
+        if ($("#solutionSelect").val() !== '' && $('#solutionInput').val() == '' && $('#addSolution1').val() == '' && $('#addSolution2').val() == '') {
+            var solution = $("#solutionSelect").val();
         }
-        if ($("#solutionSelect").val()!=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() =='' &&  $('#addSolution2').val() =='' ) {
+        if ($("#solutionSelect").val() !== '' && $('#solutionInput').val() !== '' && $('#addSolution1').val() == '' && $('#addSolution2').val() == '') {
             var solution = $("#solutionSelect").val() + " ; " + $('#solutionInput').val()
         }
-        if ($("#solutionSelect").val()!=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() !=='' &&  $('#addSolution2').val() =='' ) {
+        if ($("#solutionSelect").val() !== '' && $('#solutionInput').val() !== '' && $('#addSolution1').val() !== '' && $('#addSolution2').val() == '') {
             var solution = $("#solutionSelect").val() + " ; " + $('#solutionInput').val() + " ; " + $('#addSolution1').val()
         }
-        if ($("#solutionSelect").val()!=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() !=='' &&  $('#addSolution2').val() !=='' ) {
+        if ($("#solutionSelect").val() !== '' && $('#solutionInput').val() !== '' && $('#addSolution1').val() !== '' && $('#addSolution2').val() !== '') {
             var solution = $("#solutionSelect").val() + " ; " + $('#solutionInput').val() + " ; " + $('#addSolution1').val() + " ; " + $('#addSolution2').val();
         }
-        if ($("#solutionSelect").val()!=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() !=='' &&  $('#addSolution2').val() !=='' ) {
+        if ($("#solutionSelect").val() !== '' && $('#solutionInput').val() !== '' && $('#addSolution1').val() !== '' && $('#addSolution2').val() !== '') {
             var solution = $("#solutionSelect").val() + " ; " + $('#solutionInput').val() + " ; " + $('#addSolution1').val() + " ; " + $('#addSolution2').val();
         }
 
-        if ($("#solutionSelect").val()=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() =='' &&  $('#addSolution2').val() =='' ) {
-            var solution =  $("#solutionInput").val();
+        if ($("#solutionSelect").val() == '' && $('#solutionInput').val() !== '' && $('#addSolution1').val() == '' && $('#addSolution2').val() == '') {
+            var solution = $("#solutionInput").val();
         }
-        if ($("#solutionSelect").val()=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() !=='' &&  $('#addSolution2').val() =='' ) {
+        if ($("#solutionSelect").val() == '' && $('#solutionInput').val() !== '' && $('#addSolution1').val() !== '' && $('#addSolution2').val() == '') {
             var solution = $("#solutionInput").val() + " ; " + $('#addSolution1').val()
         }
-        if ($("#solutionSelect").val()=='' &&  $('#solutionInput').val() !=='' &&  $('#addSolution1').val() !=='' &&  $('#addSolution2').val() !=='' ) {
+        if ($("#solutionSelect").val() == '' && $('#solutionInput').val() !== '' && $('#addSolution1').val() !== '' && $('#addSolution2').val() !== '') {
             var solution = $("#solutionInput").val() + " ; " + $('#addSolution1').val() + " ; " + $('#addSolution2').val()
         }
         // TRD APPLICATOR TROUBLE  ----------------------------------------------------------------------------------------------------
@@ -486,6 +503,10 @@ if (isset($_GET['listId'])) {
         $(this).attr('disabled', true);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
+            if ($("#solutionSelect").val() == '' && $("#solutionInput").val() == '' ) {
+                swal('Attention!', 'Please input your solution or complete necessary details!', 'info');
+                $('#endAndonBtn').attr('disabled', false);
+            }
             if (this.readyState == 4 && this.status == 200) {
                 var response = this.responseText;
                 if (response == 'success') {
@@ -547,5 +568,6 @@ if (isset($_GET['listId'])) {
             , true);
         xhttp.send();
     });
+
 </script>
 <?php $db->close(); ?>
